@@ -8,12 +8,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   </head>
 
   <body>
     <body class="d-flex flex-column vh-100">
     <header class="bg-dark text-white">
-      <nav class="navbar navbar-expand-lg stroke='rgba(255, 255, 255, 0.5)' navbar-light px-16px py-8px">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-16px py-8px">
         <div class="container">
           <a class="navbar-brand text-white py-5px" href="/">Bookers</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +24,9 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-white' %>
+              <%= link_to user_path(current_user.id), class: 'nav-link text-white' do %>
+              <i class="fas fa-home"></i>Home
+              <% end %>
             </li>
             <li class="nav-item">
               <%= link_to "Users",users_path, class: 'nav-link text-white' %>
@@ -39,7 +42,7 @@
               <%= link_to "Home", root_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to "About", new_user_session_path, class: 'nav-link text-white' %>
+              <%= link_to "About", homes_about_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
               <%= link_to "sign up", new_user_registration_path, class: 'nav-link text-white' %>
@@ -54,7 +57,7 @@
       </nav>
     </header>
 
-    <main class="mb-auto">
+    <main>
     <%= yield %>
     </main>
     <footer class="text-black">
