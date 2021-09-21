@@ -25,6 +25,7 @@
     <% if @user.id == current_user.id %>
       <%= link_to edit_user_path(@user) do %>
       <p class="btn btn-outline-secondary btn-block fas fa-user-cog"></p>
+      <% end %>
     <% end %>
         </div>
       </div>
@@ -32,12 +33,3 @@
   </div>
 </div>
 
-<% @books.each do |book| %>
-  <div>
-    <p>投稿ユーザー画像：<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %></p>
-    <p>title Opinion</p>
-    <%= books.title %><%= books.body %>
-    <p><%= profile_image_id.user.name %></p>
-  </div>
-  <% end %>
-<%= paginate @books %>
