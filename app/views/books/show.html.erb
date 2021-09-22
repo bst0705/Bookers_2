@@ -1,12 +1,33 @@
-<div>
-  <%= attachment_image_tag@user, :profile_image %>
-  <p><%= @user.name %></p>
-  <p>説明：<%= @book.title %></p>
-  <p>ユーザーネーム：<%= @book.body %></p>
-  <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post_image.user == current_user %>
-    <p><%= link_to "Destroy", post_image_path(@post_image), method: :delete %></p>
-    <p><%= link_to "Edit", book_path(@) %></p>
-  <% end %>
+<%= render 'books/list',user: @user, book: @book %>
+    <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+              <%= attachment_image_tag book.users, :profile_image, :fill, 100, 100, format: 'jpeg' %></br>
+              <%= user.name %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+                <% end %>
+              </td>
+              <td><%= book.body %></td>
+              <td>
+                <% if @book.user == current_user %>
+                <%= link_to "Edit", edit_book_path %>
+                <% end %>
+              </td>
+              <td>
+                <% if @book.user == current_user %>
+                <%= link_to "Destroy", books_path(@book), method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-

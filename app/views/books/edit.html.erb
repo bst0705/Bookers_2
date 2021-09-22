@@ -1,15 +1,29 @@
-<<div class="container">
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
-      <%= form_with model:@user, local:true do |f| %>
+      <%= form_with model:@book, local:true do |f| %>
+      <div>
         <label for="inputTitle">Title</label>
-        <%= f.text_field :title, autofocus: true, id:"inputTitle" %>
+        <p><%= f.text_field :title, autofocus: true, id:"inputTitle" %></p>
+      </div>
+      <div>
         <label for="inputBody">Opinion</label>
-        <%= f.text_field :body, autofocus: true, id:"inputBody" %>
-        <%= f.submit "Update User" %>
+        <p><%= f.text_area :body, autofocus: true, id:"inputBody" %></p>
+      </div>
+      <div class="mb-3">
+         <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
       <% end %>
+      </div>
+      <div>
       <%= link_to "Show", book_path %> | <%= link_to "Back", book_path %>
+      </div>
     </div>
   </div>
 </div>
