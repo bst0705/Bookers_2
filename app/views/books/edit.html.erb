@@ -18,11 +18,11 @@
         <p><%= f.text_area :body, autofocus: true, id:"inputBody" %></p>
       </div>
       <div class="mb-3">
-         <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+         <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
       <% end %>
       </div>
       <div>
-      <%= link_to "Show", book_path %> | <%= link_to "Back", book_path %>
+      <%= link_to "Show", book_path %> | <%= link_to "Back", books_path %>
       </div>
     </div>
   </div>

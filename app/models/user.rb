@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
 
   validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
+
 end

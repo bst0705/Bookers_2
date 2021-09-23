@@ -5,23 +5,25 @@
           <tbody>
             <tr>
               <td>
-              <%= attachment_image_tag book.users, :profile_image, :fill, 100, 100, format: 'jpeg' %></br>
-              <%= user.name %>
-              </td>
-              <td>
-                <%= link_to book_path(book.id) do %>
-                <%= book.title %>
-                <% end %>
-              </td>
-              <td><%= book.body %></td>
-              <td>
-                <% if @book.user == current_user %>
-                <%= link_to "Edit", edit_book_path %>
+                <%= link_to user_path(@user.id) do %>
+                <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg' %></br>
+                <%= @user.name %>
                 <% end %>
               </td>
               <td>
+                <%= link_to book_path(@book.id) do %>
+                <%= @book.title %>
+                <% end %>
+              </td>
+              <td><%= @book.body %></td>
+              <td>
                 <% if @book.user == current_user %>
-                <%= link_to "Destroy", books_path(@book), method: :delete %>
+                <%= link_to "Edit", edit_book_path, class: "btn btn-success" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @book.user == current_user %>
+                <%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger", data: {confirm: "本当に消しますか？"}, method: :delete %>
                 <% end %>
               </td>
             </tr>

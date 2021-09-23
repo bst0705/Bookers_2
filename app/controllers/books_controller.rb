@@ -11,10 +11,16 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    # Bookモデルに新しいやつを入れる
     @book.user_id = current_user.id
    if @book.save
-      redirect_to book_path(current_user.id)
+     flash[:notice] = "successfully"
+      redirect_to book_path(@book.id)
+      # 元々Bookモデルにはidが複数あり、@book.idで最新のものを持ってくる
+      # パスにparamsは入れられない。
    else
+     @user = current_user
+     @books = Book.page(params[:page]).reverse_order
       render :index
    end
   end
@@ -28,6 +34,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.new
     @book = Book.find(params[:id])
+    @books = Book.page(params[:page]).reverse_order
     @user = current_user
     @users = User.all
   end
@@ -45,7 +52,9 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to book_path(@book.id)
+      flash[:notice] = "successfully"
+      redirect_to book_path
+
     else
       render :edit
     end

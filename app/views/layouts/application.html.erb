@@ -11,44 +11,57 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   </head>
 
-  <body>
-    <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column vh-100">
     <header class="bg-dark text-white">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-16px py-8px">
         <div class="container">
           <a class="navbar-brand text-white py-5px" href="/">Bookers</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="navbar-collapse collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to user_path(current_user.id), class: 'nav-link text-white' do %>
-              <i class="fas fa-home"></i>Home
+              <i class="fas fa-home"></i> Home
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "Users",users_path, class: 'nav-link text-white' %>
+              <%= link_to users_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-users"></i> Users
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Books', books_path, class: 'nav-link text-white' %>
+              <%= link_to books_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-book-open"></i> Books
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "logout", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+              <i class="fas fa-sign-out-alt"></i> logout
+              <% end %>
             </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+              <%= link_to root_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-home"></i> Home
+            <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "About", homes_about_path, class: 'nav-link text-white' %>
+              <%= link_to home_about_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-link"></i> About
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "sign up", new_user_registration_path, class: 'nav-link text-white' %>
+              <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-user-plus"></i> sign up
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "login", new_user_session_path, class: 'nav-link text-white' %>
+              <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
+              <i class="fas fa-sign-in-alt"></i> login
+              <% end %>
             </li>
             <% end %>
             </ul>
@@ -58,6 +71,7 @@
     </header>
 
     <main>
+    <%= flash[:notice] %>
     <%= yield %>
     </main>
     <footer class="text-black">
@@ -69,8 +83,5 @@
         </div>
       </div>
     </footer>
-  </body>
-
-
   </body>
 </html>
