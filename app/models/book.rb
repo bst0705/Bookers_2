@@ -2,8 +2,10 @@ class Book < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, presence: true
-  validates :body, presence: true
+
+  validates :title,presence: { message: 'error' }
+
+  validates :body,presence: { message: 'error' }
   validates :body,length: { maximum: 200 }
 
 

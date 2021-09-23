@@ -32,11 +32,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.new
+    @book_new = Book.new
     @book = Book.find(params[:id])
-    @books = Book.page(params[:page]).reverse_order
     @user = current_user
-    @users = User.all
   end
 
   def destroy

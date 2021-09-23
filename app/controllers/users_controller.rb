@@ -5,15 +5,15 @@ class UsersController < ApplicationController
   def correct_users
         @user = User.find(params[:id])
     unless @user.id == current_user.id
-      redirect_to users_path
+      redirect_to user_path(current_user.id)
     end
   end
 
   def show
     @book = Book.new
-    @user = current_user
-    @usershow = User.find(params[:id])
-    @books = @usershow.books.page(params[:page]).reverse_order
+    @user = User.find(params[:id])
+    @booksall = Book.all
+    @books = @booksall.page(params[:page]).reverse_order
   end
 
   def create
