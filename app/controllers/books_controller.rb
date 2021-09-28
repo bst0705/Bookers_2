@@ -27,12 +27,14 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
+
     @user = current_user
     @books = Book.page(params[:page]).reverse_order
   end
 
   def show
     @book_new = Book.new
+    @book_comment = BookComment.new
     @book = Book.find(params[:id])
     @user = current_user
   end
@@ -65,3 +67,5 @@ class BooksController < ApplicationController
   end
 
 end
+
+

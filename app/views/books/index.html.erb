@@ -24,6 +24,9 @@
                 <% end %>
               </td>
               <td>
+                <%= book.body %>
+              </td>
+              <td>
                 <% if book.favorited_by?(current_user) %>
                   <p>
                     <%= link_to book_favorites_path(book), method: :delete do %>
@@ -38,7 +41,9 @@
                   </p>
                 <% end %>
               </td>
-              <td><%= book.body %></td>
+              <td>
+                <p>コメント件数：<%= book.book_comments.count %></p>
+              </td>
             </tr>
           </tbody>
         </table>
