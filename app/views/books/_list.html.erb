@@ -6,9 +6,9 @@
   <% end %>
 <% end %>
 
-<% if user.errors.any? %>
-  <%= user.errors.count %>件のerrorが発生しました
-  <% user.errors.full_messages.each do |message| %>
+<% if usermy.errors.any? %>
+  <%= usermy.errors.count %>件のerrorが発生しました
+  <% usermy.errors.full_messages.each do |message| %>
     <%= message %>
     <p>can't be blank</p>
   <% end %>
@@ -18,22 +18,28 @@
     <div class="row">
       <div class="col-md-3">
         <h2>User info</h2>
-        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= attachment_image_tag usermy, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
         <table class="table">
           <tbody>
             <tr>
               <th>name</th>
-              <th><%= user.name %></th>
+              <th><%= usermy.name %></th>
             </tr>
             <tr>
               <th>introduction</th>
-              <th><%= user.introduction %></th>
+              <th><%= usermy.introduction %></th>
+            </tr>
+            <tr>
+              <th><p class="text-small"><%= link_to usermy.followings.count, followings_user_path(usermy) %> フォロー</p></th>
+            </tr>
+            <tr>
+              <th><p class="text-small"><%= link_to usermy.followers.count, followers_user_path(usermy) %> フォロワー</p></th>
             </tr>
           </tbody>
         </table>
 
-          <% if user.id == current_user.id %>
-            <%= link_to edit_user_path(user) do %>
+          <% if usermy.id == current_user.id %>
+            <%= link_to edit_user_path(usermy) do %>
             <div class="row">
             <p class="btn btn-outline-secondary btn-block fas fa-user-cog"></p>
             </div>

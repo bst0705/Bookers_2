@@ -36,8 +36,24 @@ class UsersController < ApplicationController
 
   def index
     @book = Book.new
-    @user = current_user
+    @usermy = current_user
     @users = User.page(params[:page]).reverse_order
+    @users_follow = User.where.not(id: current_user.id)
+
+  end
+
+  def followings
+    @user = current_user
+    @book = Book.new
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    @user = current_user
+    @book = Book.new
+    user = User.find(params[:id])
+    @users = user.followers
   end
 
   def update
