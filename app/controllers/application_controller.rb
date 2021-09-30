@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
        flash[:notice] = "Welcome! You have signed up successfully."
        user_path(resource)
   end
-  
-  
+
+
 
   protected
 
