@@ -74,11 +74,11 @@
               </td>
               <td>
                 <% if @book.favorited_by?(current_user) %>
-                    <%= link_to book_favorites_path(@book), method: :delete do %>
+                    <%= link_to book_favorites_path(@book), method: :delete, remote: true do %>
                      <i class="fas fa-heart unlike-btn"></i></i><%= @book.favorites.count %>
                     <% end %>
                   <% else %>
-                    <%= link_to book_favorites_path(@book), method: :post do %>
+                    <%= link_to book_favorites_path(@book), method: :post, remote: true do %>
                       <i class="far fa-heart like-btn" ></i><%= @book.favorites.count %>
                     <% end %>
                 <% end %>
