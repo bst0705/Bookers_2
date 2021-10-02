@@ -72,16 +72,8 @@
                 <%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger", data: {confirm: "本当に消しますか？"}, method: :delete %>
                 <% end %>
               </td>
-              <td>
-                <% if @book.favorited_by?(current_user) %>
-                    <%= link_to book_favorites_path(@book), method: :delete, remote: true do %>
-                     <i class="fas fa-heart unlike-btn"></i></i><%= @book.favorites.count %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to book_favorites_path(@book), method: :post, remote: true do %>
-                      <i class="far fa-heart like-btn" ></i><%= @book.favorites.count %>
-                    <% end %>
-                <% end %>
+              <td id="favorite_buttons_<%= @book.id %>">
+                <%= render 'favorites/favorite', book: @book %>
               </td>
               <td>
                 コメント件数：<%= @book.book_comments.count %>
