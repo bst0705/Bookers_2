@@ -8,8 +8,8 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-  
-  
+
+
 
   def create
     @book = Book.new(book_params)
@@ -39,6 +39,7 @@ class BooksController < ApplicationController
     @book_comment = BookComment.new
     @book = Book.find(params[:id])
     @user = current_user
+    @comments = @book.book_comments.order(created_at: :desc)
   end
 
   def destroy

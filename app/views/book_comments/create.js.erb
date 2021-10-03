@@ -1,0 +1,4 @@
+$("#comments_area").html("<%= j(render 'book_comments/index', { book: @comment.book.book_comments }) %>")
+$("#counts_area").html("<%= j(render 'book_comments/count', { book: @comment.book.book_comments }) %>")
+(".input-mysize").val('')
+
